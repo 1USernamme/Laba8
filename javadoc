@@ -1,0 +1,125 @@
+
+
+### 1. Ознайомлення з документацією (javadoc)
+Перше, що вам слід зробити, це ознайомитись з документацією для основних інтерфейсів і класів колекцій в Java. Ваша задача полягає в тому, щоб зрозуміти, як працюють колекції, а також які методи надають інтерфейси та класи.
+
+#### Інтерфейси та класи, які потрібно вивчити:
+- **Collection** — це базовий інтерфейс для всіх колекцій в Java.
+- **List** — розширює Collection і представляє список, елементи в якому зберігаються в порядку їх додавання.
+- **ArrayList** — клас, який реалізує List, використовує динамічний масив для зберігання елементів.
+- **LinkedList** — ще один клас, який реалізує List, але використовує двозв'язаний список.
+- **Iterator** — інтерфейс для ітерації (перегляду) елементів колекції.
+- **RandomAccess** — маркерний інтерфейс, що позначає колекції, що дозволяють швидкий доступ до елементів за індексом (як у ArrayList).
+
+### 2. Завдання з таблиці
+
+#### Завдання 2.1:
+Реалізуйте завдання за допомогою колекцій, типізованих відповідно до вимог:
+
+##### Завдання 2:
+1. **Створити класи для студентів**:
+    - Для цього створимо клас `Student`, який буде містити основні дані про студента (наприклад, ім'я, вік, оцінки).
+2. **Створити список студентів**:
+    - Список студентів потрібно буде реалізувати за допомогою колекцій. Тут ми будемо використовувати класи **ArrayList** та **LinkedList**.
+3. **Застосувати різні способи перегляду колекцій**:
+    - Відповідно до вимог, потрібно буде використовувати **нетипізований ітератор**, **типізований ітератор** та **типізований цикл `for-each`**.
+
+#### Код:
+
+```java
+import java.util.*;
+
+class Student {
+    private String name;
+    private int age;
+    private double grade;
+
+    public Student(String name, int age, double grade) {
+        this.name = name;
+        this.age = age;
+        this.grade = grade;
+    }
+
+    // Геттери та сеттери
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public double getGrade() {
+        return grade;
+    }
+
+    @Override
+    public String toString() {
+        return name + ", " + age + " years old, Grade: " + grade;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // 1) Створення списків
+        List<Student> studentsArrayList = new ArrayList<>();
+        List<Student> studentsLinkedList = new LinkedList<>();
+
+        // 2) Додавання студентів у списки
+        studentsArrayList.add(new Student("Alice", 20, 90.5));
+        studentsArrayList.add(new Student("Bob", 22, 88.3));
+        studentsLinkedList.add(new Student("Charlie", 21, 75.2));
+        studentsLinkedList.add(new Student("David", 23, 95.0));
+
+        // 3) Використовуємо нетипізований ітератор
+        System.out.println("1. Нетипізований ітератор для ArrayList:");
+        Iterator it = studentsArrayList.iterator();
+        while (it.hasNext()) {
+            Student student = (Student) it.next();
+            System.out.println(student);
+        }
+
+        // 4) Використовуємо типізований ітератор
+        System.out.println("\n2. Типізований ітератор для LinkedList:");
+        Iterator<Student> typedIt = studentsLinkedList.iterator();
+        while (typedIt.hasNext()) {
+            Student student = typedIt.next();
+            System.out.println(student);
+        }
+
+        // 5) Використовуємо типізований цикл "for-each"
+        System.out.println("\n3. Типізований цикл for-each для ArrayList:");
+        for (Student student : studentsArrayList) {
+            System.out.println(student);
+        }
+
+        // 6) Використовуємо типізований цикл "for-each" для LinkedList
+        System.out.println("\n4. Типізований цикл for-each для LinkedList:");
+        for (Student student : studentsLinkedList) {
+            System.out.println(student);
+        }
+    }
+}
+```
+
+### Пояснення коду:
+
+1. **Клас `Student`**:
+    - Містить три поля: ім'я, вік та оцінку.
+    - Є конструктор для ініціалізації значень цих полів.
+    - Геттери для доступу до полів.
+    - Перевизначено метод `toString()`, щоб красиво вивести дані про студента.
+
+2. **Список студентів**:
+    - Створено два списки: **ArrayList** та **LinkedList** для зберігання об'єктів класу `Student`.
+    - Випадково додаємо кілька студентів у кожний список.
+
+3. **Перегляд колекцій**:
+    - **Нетипізований ітератор**: Використовуємо стандартний ітератор без типізації.
+    - **Типізований ітератор**: Використовуємо типізований ітератор для типу `Student`.
+    - **Типізований цикл `for-each`**: Це спрощений спосіб перебору елементів колекції.
+
+### Важливі моменти:
+- Використання **типізованих колекцій** важливо, щоб уникнути помилок при додаванні елементів.
+- При використанні ітераторів важливо дотримуватись типів для кращої безпеки та зручності коду.
+- Різні способи ітерації дозволяють ефективно працювати з колекціями в Java.
